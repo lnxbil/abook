@@ -645,6 +645,10 @@ get_commands()
 			case 'v': launch_wwwbrowser(list_get_curitem());
 				  refresh_screen();
 				  break;
+
+			case 'c': call(list_get_curitem());
+				  refresh_screen();
+				  break;
 		}
 	}
 }

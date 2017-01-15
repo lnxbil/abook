@@ -6,6 +6,7 @@
 FILE		*abook_fopen (const char *path, const char *mode);
 void		quit_abook(int save_db);
 void		launch_wwwbrowser(int item);
+void		call(int item);
 void		launch_mutt(int item);
 void		print_stderr(int item);
 #ifdef _AIX

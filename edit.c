@@ -743,6 +743,7 @@ edit_loop(int item)
 		case 'u': item = edit_undo(item, RESTORE_ITEM); break;
 		case 'm': launch_mutt(item); clearok(stdscr, 1); break;
 		case 'v': launch_wwwbrowser(item); clearok(stdscr, 1); break;
+		case 'c': call(item); clearok(stdscr, 1); break;
 		case 12 : clearok(stdscr, 1); break; /* ^L (refresh screen) */
 		case 'q': return -1;
 		default: edit_field(tab, c, item);

@@ -599,6 +599,40 @@ launch_mutt(int item)
 }
 
 void
+call(int item)
+{
+	char *cmd = NULL;
+
+	if( !is_valid_item(item) )
+		return;
+
+	if(db_fget(item, WORKPHONE) || db_fget(item, PHONE) || db_fget(item, MOBILEPHONE))
+		cmd = strdup_printf("%s '%s'  '%s' '%s' '%s'",
+				opt_get_str(STR_CALL_COMMAND),
+				safe_str(db_fget(item, NAME)),
+				safe_str(db_fget(item, WORKPHONE)),
+				safe_str(db_fget(item, MOBILEPHONE)),
+				safe_str(db_fget(item, PHONE))
+			);
+	else
+		return;
+
+#ifdef DEBUG
+	fprintf(stderr, "cmd: %s\n", cmd);
+#endif
+
+	if ( cmd )
+		system(cmd);
+
+	free(cmd);
+
+	/*
+	 * we need to make sure that curses settings are correct
+	 */
+	ui_init_curses();
+}
+
+void
 launch_wwwbrowser(int item)
 {
 	char *cmd = NULL;
